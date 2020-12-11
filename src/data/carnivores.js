@@ -1,0 +1,86 @@
+export default [
+  {
+    name: "Allosaurus",
+    diet: "carnivorous",
+    period: "Late Jurassic",
+    type: "Large theropod",
+  },
+  {
+    name: "Archaeopteryx",
+    diet: "carnivorous",
+    period: "Late Jurassic",
+    type: "Small theropod",
+  },
+  {
+    name: "Ceratosaurus",
+    diet: "carnivorous",
+    period: "Late Jurassic",
+    type: "Large theropod",
+  },
+  {
+    name: "Conchoraptor",
+    diet: "carnivorous",
+    period: "Late Cretaceous",
+    type: "Small theropod",
+  },
+  {
+    name: "Deinonychus",
+    diet: "carnivorous",
+    period: "Early Cretaceous",
+    type: "Small theropod",
+  },
+  {
+    name: "Irritator",
+    diet: "carnivorous",
+    period: "Early Cretaceous",
+    type: "Large theropod",
+  },
+  {
+    name: "Liliensternus",
+    diet: "carnivorous",
+    period: "Late Triassic",
+    type: "Small theropod",
+  },
+  {
+    name: "Megalosaurus",
+    diet: "carnivorous",
+    period: "Mid Jurassic",
+    type: "Large theropod",
+  },
+  {
+    name: "Microraptor",
+    diet: "carnivorous",
+    period: "Early Cretaceous",
+    type: "Small theropod",
+  },
+  {
+    name: "Ornitholestes",
+    diet: "carnivorous",
+    period: "Late Jurassic",
+    type: "Small theropod",
+  },
+  {
+    name: "Proceratosaurus",
+    diet: "carnivorous",
+    period: "Mid Jurassic",
+    type: "Small theropod",
+  },
+  {
+    name: "Spinosaurus",
+    diet: "carnivorous",
+    period: "Late Cretaceous",
+    type: "Large theropod",
+  },
+  {
+    name: "Tyrannosaurus",
+    diet: "carnivorous",
+    period: "Late Cretaceous",
+    type: "Large theropod",
+  },
+  {
+    name: "Velociraptor",
+    diet: "carnivorous",
+    period: "Late Cretaceous",
+    type: "Small theropod",
+  },
+];
