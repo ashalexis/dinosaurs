@@ -121,12 +121,6 @@ export default {
       type: "Sauropod",
     },
     {
-      name: "Camptosaurus",
-      diet: "herbivorous",
-      period: "Late Jurassic",
-      type: "Euornithopod",
-    },
-    {
       name: "Gilmoreosaurus",
       diet: "herbivorous",
       period: "Late Cretaceous",

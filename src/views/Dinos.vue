@@ -19,6 +19,7 @@ export default {
   data() {
     return {};
   },
+  mounted() {},
   computed: {
     sortedDinos() {
       return this.$store.getters.dinoSort;
