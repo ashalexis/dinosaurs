@@ -16,6 +16,12 @@
   </div>
 </template>
 
+<script>
+export default {
+  data() {},
+};
+</script>
+
 <style>
 .about {
   margin: 3rem;

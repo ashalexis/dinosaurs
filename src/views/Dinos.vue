@@ -1,14 +1,11 @@
 <template>
   <div id="dinos">
     <h1>Dinos!</h1>
-    <div id="table">
-      <DinoTable :dinos="dinosaurs" />
-    </div>
+    <DinoTable :dinosaurs="sortedDinos" />
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
 import DinoTable from "@/components/DinoTable.vue";
 
 export default {
@@ -19,14 +16,15 @@ export default {
     return {};
   },
   computed: {
-    ...mapState(["dinosaurs"]),
+    sortedDinos() {
+      return this.$store.getters.dinoSort;
+    },
   },
 };
 </script>
 
 <style>
-#table {
-  display: flex;
-  justify-content: center;
+#dinos {
+  padding: 1rem;
 }
 </style>

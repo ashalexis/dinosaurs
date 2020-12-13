@@ -1,34 +1,23 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/dinos">Dinos</router-link> |
-      <router-link to="/create">Create</router-link>
-    </div>
-    <router-view />
-  </div>
+  <v-app>
+    <v-app-bar app flat>
+      <v-btn text to="/">Home</v-btn>
+      <v-btn text to="/about">About</v-btn>
+      <v-btn text to="/dinos">Dinosaurs</v-btn>
+      <v-btn text to="/create">Make a dino!</v-btn>
+    </v-app-bar>
+    <v-main>
+      <router-view></router-view>
+    </v-main>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+export default {
+  name: "App",
 
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+  data: () => ({
+    //
+  }),
+};
+</script>
