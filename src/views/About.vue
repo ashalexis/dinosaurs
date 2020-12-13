@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="about">
     <h1>About...</h1>
     <div class="about website">
       <h2>This website</h2>
@@ -8,10 +8,6 @@
     <div class="about developer">
       <h2>The developer</h2>
       <p>The developer is really enthusiastic about dinosaurs.</p>
-    </div>
-    <div class="about repo">
-      <h2>The repo</h2>
-      <p>The repository for this website can be found at [].</p>
     </div>
   </div>
 </template>
@@ -25,12 +21,12 @@ export default {
 </script>
 
 <style>
-.about {
-  margin: 3rem;
+#about {
+  padding: 1rem;
 }
 
-h2 {
-  margin: 0;
+.about {
+  margin: 3rem;
   padding: 0;
 }
 </style>
