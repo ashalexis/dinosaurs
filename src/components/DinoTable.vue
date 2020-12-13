@@ -22,7 +22,14 @@
     </v-simple-table>
     <v-dialog v-model="dialog" @click:outside="handleExit">
       <v-card>
-        <v-title>{{ contents.name }}</v-title>
+        <v-card-title>{{ contents.name }}</v-card-title>
+        <v-card-text>
+          <p>
+            This dinosaur was {{ contents.diet }} and lived in the
+            {{ contents.period }} era.
+          </p>
+          <p><strong>Type:</strong> {{ contents.type }}</p>
+        </v-card-text>
       </v-card>
     </v-dialog>
   </div>

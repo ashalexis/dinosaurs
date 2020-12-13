@@ -1,6 +1,10 @@
 <template>
   <div id="dinos">
-    <h1>Dinos!</h1>
+    <div id="dinos-header">
+      <h1>Dinos!</h1>
+      <v-spacer />
+      <v-btn to="/create" color="success">Add a dino!</v-btn>
+    </div>
     <DinoTable :dinosaurs="sortedDinos" />
   </div>
 </template>
@@ -26,5 +30,9 @@ export default {
 <style>
 #dinos {
   padding: 1rem;
+}
+
+#dinos-header {
+  display: flex;
 }
 </style>
