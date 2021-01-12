@@ -47,7 +47,6 @@
             <v-row
               v-for="row in rowCount"
               :key="row"
-              justify="left"
               no-gutters
               class="directoryRow"
             >
@@ -55,26 +54,24 @@
                 v-for="dino in sortedDinos.slice((row - 1) * 4, row * 4)"
                 :key="dino.name"
               >
-                <v-dialog width="500">
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-btn text v-bind="attrs" v-on="on">
-                      <u>{{ dino.name }}</u></v-btn
-                    >
-                  </template>
-
-                  <DinoDialog
-                    :name="dino.name"
-                    :period="dino.period"
-                    :type="dino.type"
-                    :diet="dino.diet"
-                  />
-                </v-dialog>
+                <v-btn text v-bind="attrs" v-on="on" @click="handleClick(dino)">
+                  <u>{{ dino.name }}</u>
+                </v-btn>
               </v-col>
             </v-row>
           </v-container>
         </v-col>
       </v-row>
     </v-container>
+
+    <v-dialog v-model="dialog" @click:outside="handleExit">
+      <DinoDialog
+        :name="contents.name"
+        :period="contents.period"
+        :type="contents.type"
+        :diet="contents.diet"
+      />
+    </v-dialog>
   </div>
 </template>
 
@@ -99,10 +96,17 @@ export default {
   },
   data() {
     return {
+      dialog: false,
       singlesearch: "",
       formData: {
         name: "",
         era: "",
+      },
+      contents: {
+        name: "",
+        period: "",
+        type: "",
+        diet: "",
       },
       alphabet: [],
       era: [
@@ -118,13 +122,35 @@ export default {
   created() {
     this.alphabet = genCharArray("A", "Z");
   },
-  mounted() {},
+  updated() {
+    if (this.dialog == false) {
+      this.$router.push({ query: "" });
+    }
+  },
+  mounted() {
+    let dino = this.$route.query.dino;
+    let chosen = this.sortedDinos.filter(e => e.name == dino);
+    if (dino) {
+      this.dialog = true;
+      this.contents = chosen[0];
+    }
+  },
   computed: {
     sortedDinos() {
       return this.$store.getters.dinoSort;
     },
     rowCount() {
       return Math.floor((this.sortedDinos.length - 1) / 4) + 1;
+    },
+  },
+  methods: {
+    handleClick(dino) {
+      this.dialog = true;
+      this.contents = dino;
+      this.$router.push({ query: { dino: dino.name } });
+    },
+    handleExit() {
+      this.dialog = false;
     },
   },
 };

@@ -4,9 +4,11 @@
       <v-card-title class="headline grey lighten-2">{{ name }}</v-card-title>
 
       <v-card-text class="card-text">
-        <p><strong>Type of dinosaur:</strong> {{ type }}</p>
-        <p><strong>Diet:</strong> {{ diet }}</p>
-        <p><strong>When it lived:</strong> {{ period }}</p>
+        <div class="information">
+          <p><strong>Type of dinosaur:</strong> {{ type }}</p>
+          <p><strong>Diet:</strong> {{ diet }}</p>
+          <p><strong>When it lived:</strong> {{ period }}</p>
+        </div>
       </v-card-text>
     </v-card>
   </div>
@@ -19,18 +21,13 @@ export default {
     diet: String,
     period: String,
     type: String,
-  },
-  computed: {
-    src() {
-      let lowercaseName = name.toLowerCase();
-      return `https://www.nhm.ac.uk/resources/nature-online/life/dinosaurs/dinosaur-directory/images/reconstruction/small/${lowercaseName}.jpg`;
-    },
+    handleClose: Function,
   },
 };
 </script>
 
 <style>
-.card-text {
+.information {
   margin: 1rem;
 }
 </style>
