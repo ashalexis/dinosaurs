@@ -134,7 +134,7 @@ export default {
     let chosen = this.sortedDinos.filter(e => e.name == dino);
     if (dino) {
       this.dialog = true;
-      this.contents = chosen[0];
+      this.contents = chosen;
     }
   },
   computed: {
