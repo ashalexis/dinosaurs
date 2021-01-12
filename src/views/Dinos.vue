@@ -54,7 +54,7 @@
                 v-for="dino in sortedDinos.slice((row - 1) * 4, row * 4)"
                 :key="dino.name"
               >
-                <v-btn text v-bind="attrs" v-on="on" @click="handleClick(dino)">
+                <v-btn text @click="handleClick(dino)">
                   <u>{{ dino.name }}</u>
                 </v-btn>
               </v-col>
@@ -70,6 +70,7 @@
         :period="contents.period"
         :type="contents.type"
         :diet="contents.diet"
+        :imgsrc="contents.imgsrc"
       />
     </v-dialog>
   </div>
@@ -107,6 +108,7 @@ export default {
         period: "",
         type: "",
         diet: "",
+        imgsrc: "",
       },
       alphabet: [],
       era: [

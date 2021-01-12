@@ -4,18 +4,23 @@ export default [
     diet: "carnivorous",
     period: "Late Jurassic",
     type: "Large theropod",
+    imgsrc:
+      "https://thenaturalworld1.blogspot.com/2012/12/23-fact-tuesday-allosaurus.html",
   },
   {
     name: "Archaeopteryx",
     diet: "carnivorous",
     period: "Late Jurassic",
     type: "Small theropod",
+    imgsrc:
+      "https://gardenofeaden.blogspot.com/2012/03/dinosaur-archaeopteryx.html",
   },
   {
     name: "Ceratosaurus",
     diet: "carnivorous",
     period: "Late Jurassic",
     type: "Large theropod",
+    imgsrc: "https://en.wikipedia.org/wiki/File:Ceratosaurus_nasicornis_DB.jpg",
   },
   {
     name: "Conchoraptor",
