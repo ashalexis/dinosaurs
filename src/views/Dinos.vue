@@ -10,36 +10,8 @@
             append-icon="mdi-database-search"
             v-model="singlesearch"
             @click:append="handleSearch"
+            @keydown.enter="handleSearch"
           ></v-text-field>
-
-          <v-menu :close-on-content-click="false">
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn text outlined v-bind="attrs" v-on="on">
-                Explore dinosaurs by:
-              </v-btn>
-            </template>
-            <v-list>
-              <v-list-item>
-                <v-select
-                  v-model="formData.name"
-                  :items="alphabet"
-                  label="Name (A-Z)"
-                  prepend-inner-icon="mdi-plus"
-                >
-                </v-select>
-              </v-list-item>
-
-              <v-list-item>
-                <v-select
-                  v-model="formData.era"
-                  :items="era"
-                  label="When they lived"
-                  prepend-inner-icon="mdi-plus"
-                >
-                </v-select>
-              </v-list-item>
-            </v-list>
-          </v-menu>
         </v-col>
 
         <v-col sm="12" md="8">
@@ -93,6 +65,7 @@ function genCharArray(charA, charZ) {
 }
 
 export default {
+  inject: ["notyf"],
   components: {
     DinoDialog,
   },
@@ -135,7 +108,7 @@ export default {
     let chosen = this.sortedDinos.filter(e => e.name == dino);
     if (dino) {
       this.dialog = true;
-      this.contents = chosen;
+      this.contents = chosen[0];
     }
   },
   computed: {
@@ -157,7 +130,7 @@ export default {
         this.contents = dino[0];
         this.$router.push({ query: { dino: dino.name } });
       } else {
-        alert("none!");
+        this.notyf.error("This dinosaur doesn't exist!");
       }
     },
     handleClick(dino) {
