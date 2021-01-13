@@ -9,6 +9,7 @@
             label="Search dinosaurs"
             append-icon="mdi-database-search"
             v-model="singlesearch"
+            @click:append="handleSearch"
           ></v-text-field>
 
           <v-menu :close-on-content-click="false">
@@ -146,6 +147,19 @@ export default {
     },
   },
   methods: {
+    handleSearch() {
+      let dino = this.sortedDinos.filter(
+        e => e.name.toLowerCase() == this.singlesearch.toLowerCase()
+      );
+      if (dino.length !== 0) {
+        console.log(dino);
+        this.dialog = true;
+        this.contents = dino[0];
+        this.$router.push({ query: { dino: dino.name } });
+      } else {
+        alert("none!");
+      }
+    },
     handleClick(dino) {
       this.dialog = true;
       this.contents = dino;

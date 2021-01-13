@@ -1,11 +1,15 @@
 <template>
   <div id="dino-dialog">
     <v-card>
-      <v-card-title class="headline grey lighten-2">{{ name }}</v-card-title>
+      <v-card-title class="headline lighten-2" :class="titlecolor">{{
+        name
+      }}</v-card-title>
 
       <v-card-text class="card-text">
         <div class="img">
           <v-img
+            max-width="50%"
+            :alt="`${name}`"
             :src="require(`../assets/${name}.jpg`)"
             @mouseover="hover = true"
             @mouseleave="hover = false"
@@ -16,7 +20,7 @@
                 class="d-flex black v-card--reveal white--text"
                 style="height: 2rem;"
               >
-                <p>Source: {{ imgsrc }}</p>
+                <p>Source: {{ imgsrc || "cannot be found" }}</p>
               </div>
             </v-expand-transition>
           </v-img>
@@ -46,10 +50,23 @@ export default {
       hover: false,
     };
   },
+  computed: {
+    titlecolor() {
+      let diet = this.diet;
+      return diet == "herbivorous"
+        ? "green"
+        : diet == "carnivorous"
+        ? "red"
+        : "grey";
+    },
+  },
 };
 </script>
 
 <style>
+.card-text {
+  margin: 1rem;
+}
 .v-card--reveal {
   align-items: center;
   bottom: 0;
