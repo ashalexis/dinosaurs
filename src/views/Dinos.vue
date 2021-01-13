@@ -12,11 +12,29 @@
             @click:append="handleSearch"
             @keydown.enter="handleSearch"
           ></v-text-field>
+          <v-btn class="primary" to="/create">Add my own dinosaur!</v-btn>
         </v-col>
 
         <v-col sm="12" md="8">
-          <h1 style="margin-left: 2rem;">All dinosaurs</h1>
           <v-container>
+            <h1 style="margin-left: 1rem;">All dinosaurs</h1>
+            <v-row
+              v-for="row in rowCount"
+              :key="row"
+              no-gutters
+              class="directoryRow"
+            >
+              <v-col
+                v-for="dino in sortedDinos.slice((row - 1) * 4, row * 4)"
+                :key="dino.name"
+              >
+                <v-btn text @click="handleClick(dino)">
+                  <u>{{ dino.name }}</u>
+                </v-btn>
+              </v-col>
+            </v-row>
+
+            <h1 style="margin-left: 1rem; color: #158078">My dinosaurs</h1>
             <v-row
               v-for="row in rowCount"
               :key="row"

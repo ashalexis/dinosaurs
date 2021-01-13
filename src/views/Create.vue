@@ -59,14 +59,15 @@ export default {
         period: "",
         type: "",
       },
+      mydinos: [],
       typeRules: [
-        (v) => !!v || "Dinosaur type is required",
-        (v) =>
+        v => !!v || "Dinosaur type is required",
+        v =>
           (v && v.length >= 2) || "Dinosaur type must be at least 2 characters",
       ],
       nameRules: [
-        (v) => !!v || "Dinosaur name is required",
-        (v) =>
+        v => !!v || "Dinosaur name is required",
+        v =>
           (v && v.length >= 2) || "Dinosaur name must be at least 2 characters",
       ],
       dietoptions: [
@@ -76,18 +77,34 @@ export default {
         { text: "unknown", value: "unknown" },
       ],
       periodRules: [
-        (v) => !!v || "Dinosaur era is required",
-        (v) =>
+        v => !!v || "Dinosaur era is required",
+        v =>
           (v && v.length >= 2) || "Dinosaur era must be at least 2 characters",
       ],
     };
   },
+  mounted() {
+    if (localStorage.getItem("mydinos")) {
+      try {
+        this.mydinos = JSON.parse(localStorage.getItem("mydinos"));
+      } catch (e) {
+        localStorage.removeItem("mydinos");
+      }
+    }
+  },
   methods: {
     handleSubmit() {
       if (this.$refs.form.validate()) {
-        const payload = this.formData;
-        console.log(payload);
-        this.$store.dispatch("addDino", payload);
+        this.mydinos.push(this.formData);
+        this.formData = {
+          name: "",
+          diet: "",
+          period: "",
+          type: "",
+        };
+        const payload = JSON.stringify(this.mydinos);
+        localStorage.setItem("mydinos", payload);
+        console.log(localStorage);
 
         //inform on added
         this.notyf.success(`Dino has been added!`);

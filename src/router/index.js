@@ -20,6 +20,11 @@ const routes = [
     component: About,
   },
   {
+    path: "/create",
+    name: "Create",
+    component: Create,
+  },
+  {
     path: "/dinos",
     name: "Dinos",
     component: Dinos,
@@ -30,11 +35,6 @@ const routes = [
         component: DinoDialog,
       },
     ],
-  },
-  {
-    path: "/create",
-    name: "Create",
-    component: Create,
   },
 ];
 
