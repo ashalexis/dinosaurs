@@ -4,7 +4,6 @@
       <v-btn text to="/">Home</v-btn>
       <v-btn text to="/about">About</v-btn>
       <v-btn text to="/dinos">Dinosaurs</v-btn>
-      <v-btn text to="/create">Create</v-btn>
     </v-app-bar>
     <v-main>
       <router-view></router-view>

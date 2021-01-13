@@ -7,23 +7,25 @@
 
       <v-card-text class="card-text">
         <div class="img">
-          <v-img
-            max-width="50%"
-            :alt="`${name}`"
-            :src="require(`../assets/${name}.jpg`)"
-            @mouseover="hover = true"
-            @mouseleave="hover = false"
-          >
-            <v-expand-transition>
-              <div
-                v-if="hover"
-                class="d-flex black v-card--reveal white--text"
-                style="height: 2rem;"
-              >
-                <p>Source: {{ imgsrc || "cannot be found" }}</p>
-              </div>
-            </v-expand-transition>
-          </v-img>
+          <div v-if="imgsrc">
+            <v-img
+              max-width="50%"
+              :alt="`${name}`"
+              :src="require(`../assets/${name}.jpg`)"
+              @mouseover="hover = true"
+              @mouseleave="hover = false"
+            >
+              <v-expand-transition>
+                <div
+                  v-if="hover"
+                  class="d-flex black v-card--reveal white--text"
+                  style="height: 2rem;"
+                >
+                  <p>Source: {{ imgsrc || "cannot be found" }}</p>
+                </div>
+              </v-expand-transition>
+            </v-img>
+          </div>
         </div>
 
         <div class="information">

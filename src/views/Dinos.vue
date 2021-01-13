@@ -42,7 +42,7 @@
               class="directoryRow"
             >
               <v-col
-                v-for="dino in sortedDinos.slice((row - 1) * 4, row * 4)"
+                v-for="dino in myDinos.slice((row - 1) * 4, row * 4)"
                 :key="dino.name"
               >
                 <v-btn text @click="handleClick(dino)">
@@ -90,6 +90,7 @@ export default {
   data() {
     return {
       dialog: false,
+      myDinos: [],
       singlesearch: "",
       formData: {
         name: "",
@@ -128,6 +129,7 @@ export default {
       this.dialog = true;
       this.contents = chosen[0];
     }
+    this.getMyDinos();
   },
   computed: {
     sortedDinos() {
@@ -138,6 +140,11 @@ export default {
     },
   },
   methods: {
+    getMyDinos() {
+      if (localStorage.getItem("mydinos")) {
+        this.myDinos = JSON.parse(localStorage.getItem("mydinos"));
+      }
+    },
     handleSearch() {
       let dino = this.sortedDinos.filter(
         e => e.name.toLowerCase() == this.singlesearch.toLowerCase()
