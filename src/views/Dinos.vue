@@ -45,7 +45,7 @@
                 v-for="dino in myDinos.slice((row - 1) * 4, row * 4)"
                 :key="dino.name"
               >
-                <v-btn text @click="handleClick(dino)">
+                <v-btn text @click="handleMyClick(dino)">
                   <u>{{ dino.name }}</u>
                 </v-btn>
               </v-col>
@@ -64,12 +64,22 @@
         :imgsrc="contents.imgsrc"
       />
     </v-dialog>
+
+    <v-dialog v-model="myDialog" @click:outside="handleMyExit">
+      <MyDinoDialog
+        :name="contents.name"
+        :period="contents.period"
+        :type="contents.type"
+        :diet="contents.diet"
+      />
+    </v-dialog>
   </div>
 </template>
 
 <script>
 //imports
 import DinoDialog from "./DinoDialog";
+import MyDinoDialog from "./MyDinoDialog";
 
 //functions
 function genCharArray(charA, charZ) {
@@ -86,10 +96,12 @@ export default {
   inject: ["notyf"],
   components: {
     DinoDialog,
+    MyDinoDialog,
   },
   data() {
     return {
       dialog: false,
+      myDialog: false,
       myDinos: [],
       singlesearch: "",
       formData: {
@@ -163,8 +175,16 @@ export default {
       this.contents = dino;
       this.$router.push({ query: { dino: dino.name } });
     },
+    handleMyClick(dino) {
+      this.myDialog = true;
+      this.contents = dino;
+      this.$router.push({ query: { dino: dino.name } });
+    },
     handleExit() {
       this.dialog = false;
+    },
+    handleMyExit() {
+      this.myDialog = false;
     },
   },
 };

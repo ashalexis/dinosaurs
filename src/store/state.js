@@ -1,4 +1,5 @@
 export default {
+  mydinosaurs: [],
   dinosaurs: [
     {
       name: "Allosaurus",

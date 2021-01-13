@@ -41,6 +41,7 @@
             ></v-textarea>
           </v-col>
         </v-row>
+
         <v-btn type="submit" color="success">Submit</v-btn>
       </v-container>
     </v-form>
@@ -108,6 +109,9 @@ export default {
 
         //inform on added
         this.notyf.success(`Dino has been added!`);
+
+        //shift to dino-directory
+        this.$router.push({ path: "dinos" });
       }
     },
   },

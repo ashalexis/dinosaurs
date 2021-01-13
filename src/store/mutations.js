@@ -1,5 +1,6 @@
 export default {
   addDino: (state, payload) => {
-    state.dinosaurs.push(payload);
+    state.mydinosaurs.push(payload);
+    localStorage.setItem("mydinos", state.mydinosaurs);
   },
 };
