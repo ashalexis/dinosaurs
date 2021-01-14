@@ -80,8 +80,13 @@
         </v-card-text>
 
         <v-card-actions>
-          <v-btn class="error" @click="deleteDino(contents.id)"
-            >Delete (refresh page to work)</v-btn
+          <v-btn
+            class="error"
+            @click="
+              handleDelete(contents.id);
+              myDialog = false;
+            "
+            >Delete</v-btn
           >
         </v-card-actions>
       </v-card>
