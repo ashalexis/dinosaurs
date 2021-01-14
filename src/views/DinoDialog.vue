@@ -9,7 +9,6 @@
         <div class="img">
           <div v-if="imgsrc">
             <v-img
-              max-width="50%"
               :alt="`${name}`"
               :src="require(`../assets/${name}.jpg`)"
               @mouseover="hover = true"
@@ -66,6 +65,9 @@ export default {
 </script>
 
 <style>
+.img {
+  margin: 1rem;
+}
 .card-text {
   margin: 1rem;
 }

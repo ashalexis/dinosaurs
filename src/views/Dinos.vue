@@ -2,7 +2,7 @@
   <div id="dino-directory">
     <v-container>
       <v-row>
-        <v-col sm="12" md="4">
+        <v-col xs="12" md="4" justify="center" align="center">
           <v-text-field
             outlined
             single-line
@@ -15,7 +15,7 @@
           <v-btn class="primary" to="/create">Add my own dinosaur!</v-btn>
         </v-col>
 
-        <v-col sm="12" md="8">
+        <v-col xs="12" md="8">
           <v-container>
             <h1 style="margin-left: 1rem;">All dinosaurs</h1>
             <v-row

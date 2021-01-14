@@ -1,50 +1,57 @@
 <template>
   <div id="create">
-    <h1>Add your own dino!</h1>
-    <v-form ref="form" @submit.prevent="handleSubmit" v-model="valid">
-      <v-container>
-        <v-row>
-          <v-col>
-            <v-text-field
-              v-model="formData.name"
-              :rules="nameRules"
-              label="Name of dinosaur"
-              required
-            ></v-text-field>
-          </v-col>
-          <v-col>
-            <v-text-field
-              v-model="formData.type"
-              :rules="typeRules"
-              label="Type of dinosaur"
-              required
-            ></v-text-field
-          ></v-col>
-        </v-row>
-        <v-row>
-          <v-col>
-            <v-select
-              v-model="formData.diet"
-              :items="dietoptions"
-              label="Diet"
-              required
-            ></v-select>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col>
-            <v-textarea
-              v-model="formData.period"
-              :rules="periodRules"
-              label="When was the dinosaur alive?"
-              required
-            ></v-textarea>
-          </v-col>
-        </v-row>
+    <v-container>
+      <v-row justify="center">
+        <h1>Add your own dino!</h1>
+      </v-row>
 
-        <v-btn type="submit" color="success">Submit</v-btn>
-      </v-container>
-    </v-form>
+      <v-form ref="form" @submit.prevent="handleSubmit" v-model="valid">
+        <v-container>
+          <v-row>
+            <v-col>
+              <v-text-field
+                v-model="formData.name"
+                :rules="nameRules"
+                label="Name of dinosaur"
+                required
+              ></v-text-field>
+            </v-col>
+            <v-col>
+              <v-text-field
+                v-model="formData.type"
+                :rules="typeRules"
+                label="Type of dinosaur"
+                required
+              ></v-text-field
+            ></v-col>
+          </v-row>
+          <v-row>
+            <v-col>
+              <v-select
+                v-model="formData.diet"
+                :items="dietoptions"
+                label="Diet"
+                required
+              ></v-select>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col>
+              <v-textarea
+                v-model="formData.period"
+                :rules="periodRules"
+                label="When was the dinosaur alive?"
+                required
+              ></v-textarea>
+            </v-col>
+          </v-row>
+
+          <v-row justify="center">
+            <v-btn type="submit" color="success">Submit</v-btn>
+          </v-row>
+        </v-container>
+      </v-form>
+    </v-container>
   </div>
 </template>
 
@@ -105,3 +112,9 @@ export default {
   },
 };
 </script>
+
+<style>
+#create {
+  margin-top: 2rem;
+}
+</style>
