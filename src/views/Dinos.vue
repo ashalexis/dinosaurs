@@ -37,7 +37,7 @@
             <h1 style="margin-left: 1rem; color: #158078">My dinosaurs</h1>
             <v-row
               v-for="row in rowCount"
-              :key="row"
+              :key="`My${row}`"
               no-gutters
               class="directoryRow"
             >
@@ -65,13 +65,26 @@
       />
     </v-dialog>
 
-    <v-dialog v-model="myDialog" @click:outside="handleMyExit">
-      <MyDinoDialog
-        :name="contents.name"
-        :period="contents.period"
-        :type="contents.type"
-        :diet="contents.diet"
-      />
+    <v-dialog v-model="myDialog">
+      <v-card>
+        <v-card-title class="headline lighten-2" :class="titlecolor">{{
+          contents.name
+        }}</v-card-title>
+
+        <v-card-text class="card-text">
+          <div class="information">
+            <p><strong>Type of dinosaur:</strong> {{ contents.type }}</p>
+            <p><strong>Diet:</strong> {{ contents.diet }}</p>
+            <p><strong>When it lived:</strong> {{ contents.period }}</p>
+          </div>
+        </v-card-text>
+
+        <v-card-actions>
+          <v-btn class="error" @click="deleteDino(contents.id)"
+            >Delete (refresh page to work)</v-btn
+          >
+        </v-card-actions>
+      </v-card>
     </v-dialog>
   </div>
 </template>
@@ -79,7 +92,8 @@
 <script>
 //imports
 import DinoDialog from "./DinoDialog";
-import MyDinoDialog from "./MyDinoDialog";
+//import MyDinoDialog from "./MyDinoDialog";
+import { mapActions } from "vuex";
 
 //functions
 function genCharArray(charA, charZ) {
@@ -96,7 +110,6 @@ export default {
   inject: ["notyf"],
   components: {
     DinoDialog,
-    MyDinoDialog,
   },
   data() {
     return {
@@ -113,7 +126,8 @@ export default {
         period: "",
         type: "",
         diet: "",
-        imgsrc: "",
+        imgsrc: null,
+        id: null,
       },
       alphabet: [],
       era: [
@@ -130,8 +144,9 @@ export default {
     this.alphabet = genCharArray("A", "Z");
   },
   updated() {
+    this.getMyDinos();
     if (this.dialog == false) {
-      this.$router.push({ query: "" });
+      this.$router.push({ query: "" }).catch(() => {});
     }
   },
   mounted() {
@@ -150,12 +165,23 @@ export default {
     rowCount() {
       return Math.floor((this.sortedDinos.length - 1) / 4) + 1;
     },
+    titlecolor() {
+      let diet = this.contents.diet;
+      return diet == "herbivorous"
+        ? "green"
+        : diet == "carnivorous"
+        ? "red"
+        : "grey";
+    },
   },
   methods: {
+    ...mapActions(["deleteDino"]),
+    handleDelete(id) {
+      this.deleteDino(id);
+      this.handleMyExit();
+    },
     getMyDinos() {
-      if (this.$store.state.mydinosaurs.length > 0) {
-        this.myDinos = this.$store.state.mydinosaurs;
-      }
+      this.myDinos = this.$store.state.mydinosaurs;
     },
     handleSearch() {
       let dino = this.sortedDinos.filter(
@@ -193,5 +219,21 @@ export default {
 <style>
 .directoryRow {
   margin: 1rem 0;
+}
+
+.card-text {
+  margin: 1rem;
+}
+.v-card--reveal {
+  align-items: center;
+  bottom: 0;
+  justify-content: center;
+  opacity: 0.5;
+  position: absolute;
+  width: 100%;
+}
+
+.information {
+  margin: 1rem;
 }
 </style>

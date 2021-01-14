@@ -14,7 +14,7 @@
       </v-card-text>
 
       <v-card-actions>
-        <v-btn class="error" @click="handleDelete(name)"
+        <v-btn class="error" @click="handleDelete(id)"
           >Delete (refresh page to work)</v-btn
         >
       </v-card-actions>
@@ -23,6 +23,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   props: {
     name: String,
@@ -34,11 +36,9 @@ export default {
     return {};
   },
   methods: {
-    handleDelete(name) {
-      let oldDinos = JSON.parse(localStorage.getItem("mydinos"));
-      let newDinos = oldDinos.filter(d => d.name !== name);
-      let payload = JSON.stringify(newDinos);
-      localStorage.setItem("mydinos", payload);
+    ...mapActions(["deleteDino"]),
+    handleDelete(id) {
+      this.deleteDino(id);
     },
   },
   computed: {

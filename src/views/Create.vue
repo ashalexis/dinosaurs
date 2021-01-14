@@ -50,6 +50,7 @@
 
 <script>
 import { mapActions } from "vuex";
+import { uuid } from "vue-uuid";
 
 export default {
   inject: ["notyf"],
@@ -91,6 +92,7 @@ export default {
     handleSubmit() {
       if (this.$refs.form.validate()) {
         const payload = this.formData;
+        payload.id = uuid.v4();
         this.addDino(payload);
 
         //inform on added
