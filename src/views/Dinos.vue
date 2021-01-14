@@ -15,8 +15,46 @@
           <v-btn class="primary" to="/create">Add my own dinosaur!</v-btn>
         </v-col>
 
-        <div v-if="$vuetify.breakpoint.mobile">
-          <v-col justify="center" align="center">
+        <v-col xs="12" md="8">
+          <div v-if="!$vuetify.breakpoint.mobile">
+            <v-container>
+              <h1 style="margin-left: 1rem;">All dinosaurs</h1>
+              <v-row
+                v-for="row in rowCount"
+                :key="row"
+                no-gutters
+                class="directoryRow"
+              >
+                <v-col
+                  v-for="dino in sortedDinos.slice((row - 1) * 4, row * 4)"
+                  :key="dino.name"
+                >
+                  <v-btn text @click="handleClick(dino)">
+                    <u>{{ dino.name }}</u>
+                  </v-btn>
+                </v-col>
+              </v-row>
+
+              <h1 style="margin-left: 1rem; color: #158078">My dinosaurs</h1>
+              <v-row
+                v-for="row in rowCount"
+                :key="`My${row}`"
+                no-gutters
+                class="directoryRow"
+              >
+                <v-col
+                  v-for="dino in myDinos.slice((row - 1) * 4, row * 4)"
+                  :key="dino.name"
+                >
+                  <v-btn text @click="handleMyClick(dino)">
+                    <u>{{ dino.name }}</u>
+                  </v-btn>
+                </v-col>
+              </v-row>
+            </v-container>
+          </div>
+
+          <div v-else>
             <v-container>
               <h1>All dinosaurs</h1>
               <v-row v-for="dino in sortedDinos" :key="dino.name">
@@ -32,50 +70,8 @@
                 </v-btn>
               </v-row>
             </v-container>
-          </v-col>
-        </div>
-
-        <div v-else>
-          <v-col xs="12" md="8">
-            <div>
-              <v-container>
-                <h1 style="margin-left: 1rem;">All dinosaurs</h1>
-                <v-row
-                  v-for="row in rowCount"
-                  :key="row"
-                  no-gutters
-                  class="directoryRow"
-                >
-                  <v-col
-                    v-for="dino in sortedDinos.slice((row - 1) * 4, row * 4)"
-                    :key="dino.name"
-                  >
-                    <v-btn text @click="handleClick(dino)">
-                      <u>{{ dino.name }}</u>
-                    </v-btn>
-                  </v-col>
-                </v-row>
-
-                <h1 style="margin-left: 1rem; color: #158078">My dinosaurs</h1>
-                <v-row
-                  v-for="row in rowCount"
-                  :key="`My${row}`"
-                  no-gutters
-                  class="directoryRow"
-                >
-                  <v-col
-                    v-for="dino in myDinos.slice((row - 1) * 4, row * 4)"
-                    :key="dino.name"
-                  >
-                    <v-btn text @click="handleMyClick(dino)">
-                      <u>{{ dino.name }}</u>
-                    </v-btn>
-                  </v-col>
-                </v-row>
-              </v-container>
-            </div>
-          </v-col>
-        </div>
+          </div>
+        </v-col>
       </v-row>
     </v-container>
 
