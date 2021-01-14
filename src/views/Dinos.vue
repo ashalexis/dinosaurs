@@ -153,8 +153,8 @@ export default {
   },
   methods: {
     getMyDinos() {
-      if (localStorage.getItem("mydinos")) {
-        this.myDinos = JSON.parse(localStorage.getItem("mydinos"));
+      if (this.$store.state.mydinosaurs.length > 0) {
+        this.myDinos = this.$store.state.mydinosaurs;
       }
     },
     handleSearch() {

@@ -49,6 +49,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   inject: ["notyf"],
   data() {
@@ -60,7 +62,6 @@ export default {
         period: "",
         type: "",
       },
-      mydinos: [],
       typeRules: [
         v => !!v || "Dinosaur type is required",
         v =>
@@ -84,28 +85,13 @@ export default {
       ],
     };
   },
-  mounted() {
-    if (localStorage.getItem("mydinos")) {
-      try {
-        this.mydinos = JSON.parse(localStorage.getItem("mydinos"));
-      } catch (e) {
-        localStorage.removeItem("mydinos");
-      }
-    }
-  },
+
   methods: {
+    ...mapActions(["addDino"]),
     handleSubmit() {
       if (this.$refs.form.validate()) {
-        this.mydinos.push(this.formData);
-        this.formData = {
-          name: "",
-          diet: "",
-          period: "",
-          type: "",
-        };
-        const payload = JSON.stringify(this.mydinos);
-        localStorage.setItem("mydinos", payload);
-        console.log(localStorage);
+        const payload = this.formData;
+        this.addDino(payload);
 
         //inform on added
         this.notyf.success(`Dino has been added!`);
