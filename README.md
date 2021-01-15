@@ -1,4 +1,10 @@
-# dino
+# Dinosaur directory
+
+Found here: https://dinodirectory.netlify.app/
+
+An small dinosaur directory made in Vue.js.
+The user can upload their own dinosaurs to the directory and delete them.
+User's dinosaurs are persisted through ```vuex-persistedstate```.
 
 ## Project setup
 
@@ -17,13 +23,3 @@ npm run dev
 ```
 npm run build
 ```
-
-### Lints and fixes files
-
-```
-npm run lint
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
