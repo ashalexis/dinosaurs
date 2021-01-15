@@ -6,7 +6,9 @@ import store from "./store";
 import vuetify from "./plugins/vuetify";
 import { Notyf } from "notyf";
 import "notyf/notyf.min.css";
+import UUID from "vue-uuid";
 
+Vue.use(UUID);
 Vue.use(VueTypedJs);
 
 Vue.config.productionTip = false;
@@ -22,5 +24,5 @@ new Vue({
       }),
     };
   },
-  render: (h) => h(App),
+  render: h => h(App),
 }).$mount("#app");
