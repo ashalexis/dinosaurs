@@ -61,6 +61,7 @@ export default {
   margin: 2rem;
 }
 .typing {
+  height: 50px;
   justify-content: center;
 }
 </style>
